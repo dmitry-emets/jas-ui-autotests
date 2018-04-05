@@ -1,0 +1,7 @@
+{
+  "xpaths": {
+  },
+  "resource-ids": {
+    "Settings button": "com.demets.jas:id/menu_settings"
+  }
+}

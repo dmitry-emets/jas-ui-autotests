@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Tests" verbose="5" parallel="methods" thread-count="4" data-provider-thread-count="3">
+    <test name="JAS UI Autotests">
+        <classes>
+            <class name="com.demets.jas.ui.tests.TestNgTests">
+                <methods>
+                    <include name="testSettings"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
