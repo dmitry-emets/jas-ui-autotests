@@ -35,8 +35,13 @@ abstract class AbstractPage(protected val driver: AndroidDriver<WebElement>, pat
      */
     fun getByXpath(key: String, vararg params: String): WebElement {
         return if (idStore.xpaths.containsKey(key)) {
-            val xpath = String.format(idStore.xpaths[key]!!, *params)
-            driver.findElementByXPath(xpath)
+            val template = idStore.xpaths[key]
+            if (template != null) {
+                val xpath = String.format(idStore.xpaths[key]!!, *params)
+                driver.findElementByXPath(xpath)
+            } else {
+                throw RuntimeException("Template for key \"$key\" in xpath store is null.")
+            }
         } else {
             throw RuntimeException("Key \"$key\" not found in xpath store.")
         }
@@ -45,14 +50,17 @@ abstract class AbstractPage(protected val driver: AndroidDriver<WebElement>, pat
     /**
      * Returns WebElement by it's key in predefined map.
      *
-     * @param key       Key of desired resource-id template.
-     * @param params    Parameters for resource-id template.
+     * @param key   Key of desired resource-id template.
      * @return  WebElement.
      */
-    fun getById(key: String, vararg params: String): WebElement {
+    fun getById(key: String): WebElement {
         return if (idStore.resIds.containsKey(key)) {
-            val resId = String.format(idStore.resIds[key]!!, *params)
-            driver.findElementById(resId)
+            val resId = idStore.resIds[key]
+            if (resId != null) {
+                driver.findElementById(resId)
+            } else {
+                throw RuntimeException("Template for key \"$key\" in resource-id store is null.")
+            }
         } else {
             throw RuntimeException("Key \"$key\" not found in resource-id store.")
         }
@@ -61,14 +69,17 @@ abstract class AbstractPage(protected val driver: AndroidDriver<WebElement>, pat
     /**
      * Returns is element present on page.
      *
-     * @param key       Key of desired resource-id template.
-     * @param params    Parameters for resource-id template.
+     * @param key   Key of desired resource-id template.
      * @return  Is element present.
      */
-    fun isPresentById(key: String, vararg params: String): Boolean {
+    fun isPresentById(key: String): Boolean {
         return if (idStore.resIds.containsKey(key)) {
-            val resId = String.format(idStore.resIds[key]!!, *params)
-            driver.findElementsById(resId).isNotEmpty()
+            val resId = idStore.resIds[key]
+            if (resId != null) {
+                driver.findElementsById(resId).isNotEmpty()
+            } else {
+                throw RuntimeException("Template for key \"$key\" in resource-id store is null.")
+            }
         } else {
             false
         }
