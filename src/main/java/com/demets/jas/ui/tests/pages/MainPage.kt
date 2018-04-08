@@ -11,6 +11,9 @@ import org.openqa.selenium.WebElement
  */
 class MainPage(driver: AndroidDriver<WebElement>, pathToIds: String) : AbstractPage(driver, pathToIds) {
 
+    /**
+     * Performs click on Settings button in title.
+     */
     @Step("Select \"Settings\" menu item")
     fun goToSettingsScreen() = getById(I_SB_TITLE).click()
 
