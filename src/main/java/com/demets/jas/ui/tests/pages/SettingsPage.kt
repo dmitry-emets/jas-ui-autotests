@@ -20,7 +20,7 @@ class SettingsPage(driver: AndroidDriver<WebElement>, pathToIds: String) : Abstr
      * @return  Summary text.
      */
     @Step("Getting summary text for \"{name}\" setting")
-    fun getSummary(name: String): String = getByXpath(X_ELEMENT_SUMMARY, name).text
+    private fun getSummary(name: String): String = getByXpath(X_ELEMENT_SUMMARY, name).text
 
     /**
      * Performs click on [name] item.
@@ -28,7 +28,7 @@ class SettingsPage(driver: AndroidDriver<WebElement>, pathToIds: String) : Abstr
      * @param name  Setting's name.
      */
     @Step("Click on \"{name}\" setting")
-    fun clickElement(name: String) = getByXpath(X_ELEMENT, name).click()
+    private fun clickElement(name: String) = getByXpath(X_ELEMENT, name).click()
 
     /**
      * Returns current state of switch of [name] setting.
@@ -37,7 +37,7 @@ class SettingsPage(driver: AndroidDriver<WebElement>, pathToIds: String) : Abstr
      * @return  Is switch in "true" state.
      */
     @Step("Getting switch value for \"{name}\" setting")
-    fun getSwitchValue(name: String): Boolean = getByXpath(X_ELEMENT_SWITCH, name).getAttribute("checked") == "true"
+    private fun getSwitchValue(name: String): Boolean = getByXpath(X_ELEMENT_SWITCH, name).getAttribute("checked") == "true"
 
     /**
      * Performs click on back button in settings.
