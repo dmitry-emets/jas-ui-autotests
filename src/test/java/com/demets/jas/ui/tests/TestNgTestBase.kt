@@ -3,6 +3,7 @@ package com.demets.jas.ui.tests
 import io.appium.java_client.android.AndroidDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.remote.DesiredCapabilities
+import org.testng.Assert
 import org.testng.annotations.AfterMethod
 import org.testng.annotations.BeforeMethod
 import java.net.URL
@@ -26,7 +27,9 @@ open class TestNgTestBase {
             setCapability("appActivity", ".MainActivity")
             setCapability("appPackage", "com.demets.jas")
         }
-        val serverAddress = URL("http://127.0.0.1:4723/wd/hub")
+        val url = System.getProperty("url")
+        Assert.assertNotNull(url)
+        val serverAddress = URL(url)
         driver = AndroidDriver(serverAddress, capabilities)
     }
 
